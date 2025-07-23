@@ -3,12 +3,14 @@ import LoginPage from '../pages/loginPage';
 import SignupPage from '../pages/signupPage';
 import { faker } from '@faker-js/faker';
 import AccountCreatedPage from '../pages/accountCreatedPage';
+import TopToolbar from '../pages/topToolbar';
 
 test.describe('Signup Tests', () => {
   const dayjs = require('dayjs');
   let loginPage;
   let signupPage;
   let accountCreatedPage;
+  let topToolbar;
   let name = faker.person.fullName({ sex: 'male'});
   let email = faker.internet.email({ firstName: name.split(' ')[0], lastName: name.split(' ')[1]});
   let signupInformation = {
@@ -39,6 +41,7 @@ test.describe('Signup Tests', () => {
     loginPage = new LoginPage(page);
     signupPage = new SignupPage(page);
     accountCreatedPage = new AccountCreatedPage(page);
+    topToolbar = new TopToolbar(page);
     await page.goto('https://www.automationexercise.com/login');
   });
 
@@ -55,5 +58,7 @@ test.describe('Signup Tests', () => {
     await accountCreatedPage.assertTitle('Account Created!')
     await accountCreatedPage.assertSuccessMessage('Congratulations! Your new account has been successfully created!');
     await accountCreatedPage.assertPrivilegesMessage('You can now take advantage of member privileges to enhance your online shopping experience with us.');
+    await accountCreatedPage.clickContinue();
+    await topToolbar.assertLoggedInUserLabel(name);
   })
 });
