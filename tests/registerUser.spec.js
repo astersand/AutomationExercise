@@ -42,7 +42,7 @@ test.describe('Signup Tests', () => {
     signupPage = new SignupPage(page);
     accountCreatedPage = new AccountCreatedPage(page);
     topToolbar = new TopToolbar(page);
-    await page.goto('https://www.automationexercise.com/login');
+    await page.goto('/login');
   });
 
   test('Should display signup form', async () => {
@@ -55,6 +55,7 @@ test.describe('Signup Tests', () => {
     await signupPage.fillSignupForm(signupInformation);
     await signupPage.submitForm();
     expect(page.url()).toContain('/account_created'); 
+    await page.context().storageState({ path: './AuthFile.json'});
     await accountCreatedPage.assertTitle('Account Created!')
     await accountCreatedPage.assertSuccessMessage('Congratulations! Your new account has been successfully created!');
     await accountCreatedPage.assertPrivilegesMessage('You can now take advantage of member privileges to enhance your online shopping experience with us.');
