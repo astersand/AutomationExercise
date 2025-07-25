@@ -14,4 +14,6 @@ The credentials for Login test are stored in the environment variables in .env f
 
 Only basic reporting is set as html reporter.
 
-The structure of the framework is simple. Tests folder contains the actual *tests*, while the page object model supporting files are in *pages* folder
+The structure of the framework is simple. Tests folder contains the actual *tests*, while the page object model supporting files are in *pages* folder.
+
+The information for user registration test are randomly generated using faker library. The tests for registration should generate a new user with new email every time. 
