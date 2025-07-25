@@ -7,6 +7,9 @@ export default class LoginPage {
         this.signupNameInput = this.page.locator('[data-qa=signup-name]');
         this.signupEmailInput = this.page.locator('[data-qa=signup-email]');
         this.signupButton = this.page.locator('[data-qa=signup-button]');
+        this.loginEmail = this.page.locator('input[data-qa="login-email"]');
+        this.loginPassword = this.page.locator('input[data-qa="login-password"]');
+        this.loginButton = this.page.locator('button[data-qa="login-button"]');
     }
 
 
@@ -21,5 +24,11 @@ export default class LoginPage {
 
     async assertVisibilityOfSignUpForm() {
         await expect(this.page.locator('.signup-form')).toBeVisible();
+    }
+
+    async login(email, password) {
+        await this.loginEmail.fill(email);
+        await this.loginPassword.fill(password);
+        await this.loginButton.click();
     }
 }
