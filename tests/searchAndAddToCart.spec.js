@@ -2,8 +2,6 @@ import { test, expect } from '@playwright/test';
 import ProductsPage from '../pages/productsPage';
 import CartPage from '../pages/cartPage';
 
-test.use({ storageState: './AuthFile.json' });
-
 test.beforeEach('Open the url', async ({ page }) => {
     await page.goto('/products');
 })
